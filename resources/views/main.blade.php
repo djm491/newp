@@ -18,6 +18,6 @@
     </div>
 </div>
 @include('layout.footer')
-
-
+<script src="/js/app.js"></script>
+</body>
 </html>
