@@ -18,7 +18,7 @@
 <link rel="stylesheet" type="text/css" href="/app-assets/css/app.css">
 <!-- END MODERN CSS-->
 <!-- BEGIN Page Level CSS-->
-<link rel="stylesheet" type="text/css" href="/app-assets/css/core/menu/menu-types/vertical-compact-menu.css">
+<link rel="stylesheet" type="text/css" href="/app-assets/css/core/menu/menu-types/vertical-menu-modern.css">
 <link rel="stylesheet" type="text/css" href="/app-assets/css/core/colors/palette-gradient.css">
 <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/charts/jquery-jvectormap-2.0.3.css">
 <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/charts/morris.css">

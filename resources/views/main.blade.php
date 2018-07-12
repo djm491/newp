@@ -3,9 +3,8 @@
 <head>
     @include('layout.head')
 </head>
-<body class="vertical-layout vertical-compact-menu 2-columns   menu-expanded fixed-navbar"
-      data-open="click" data-menu="vertical-compact-menu" data-col="2-columns">
-</body>
+<body class="vertical-layout vertical-menu-modern 2-columns   menu-expanded fixed-navbar"
+      data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 @include('layout.navbar')
 @include('layout.sidebar')
