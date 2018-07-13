@@ -13867,7 +13867,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(12);
-module.exports = __webpack_require__(39);
+module.exports = __webpack_require__(43);
 
 
 /***/ }),
@@ -13876,7 +13876,7 @@ module.exports = __webpack_require__(39);
 
 __webpack_require__(13);
 window.Vue = __webpack_require__(36);
-Vue.component('dashboard-component', __webpack_require__(44));
+Vue.component('dashboard-component', __webpack_require__(39));
 var app = new Vue({
     el: '#app'
 });
@@ -47123,24 +47123,14 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 /* 39 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 40 */,
-/* 41 */,
-/* 42 */,
-/* 43 */,
-/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(45)
+var normalizeComponent = __webpack_require__(40)
 /* script */
-var __vue_script__ = __webpack_require__(46)
+var __vue_script__ = __webpack_require__(41)
 /* template */
-var __vue_template__ = __webpack_require__(47)
+var __vue_template__ = __webpack_require__(42)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -47179,7 +47169,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 45 */
+/* 40 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -47288,14 +47278,11 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 46 */
+/* 41 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
 //
 //
 //
@@ -47370,6 +47357,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     created: function created() {
         this.getServers();
+        setInterval(function () {
+            this.getServers();
+        }.bind(this), 10000);
     },
 
     methods: {
@@ -47380,12 +47370,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 var self = _this;
                 self.servers = response.data;
             });
+        },
+        calcBar: function calcBar(data) {
+            return data * 10;
         }
     }
 });
 
 /***/ }),
-/* 47 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -47419,32 +47412,82 @@ var render = function() {
                                 _vm._v(_vm._s(server.server_name))
                               ]),
                               _vm._v(" "),
-                              _c("td", { staticClass: "text-truncate" }),
-                              _vm._v(" "),
                               _c("td", { staticClass: "text-truncate" }, [
-                                _vm._v("iPone X")
+                                _vm._v("Online User")
                               ]),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-truncate" }, [
-                                _vm._v("iPone X")
-                              ]),
-                              _vm._v(" "),
-                              _vm._m(2, true),
-                              _vm._v(" "),
-                              _vm._m(3, true),
-                              _vm._v(" "),
-                              _vm._m(4, true),
-                              _vm._v(" "),
-                              _c("td", { staticClass: "text-truncate" }, [
-                                _vm._v("iPone X")
+                                _vm._v(_vm._s(server.open_connections))
                               ]),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-truncate" }, [
-                                _vm._v("iPone X")
+                                _vm._v(_vm._s(server.uptime))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "progress progress-sm mt-1 mb-0 box-shadow-2"
+                                  },
+                                  [
+                                    _c("div", {
+                                      staticClass:
+                                        "progress-bar bg-gradient-x-success",
+                                      style: {
+                                        width: server.ram_used_percent + "%"
+                                      },
+                                      attrs: {
+                                        role: "progressbar",
+                                        "aria-valuenow": "85",
+                                        "aria-valuemin": "0",
+                                        "aria-valuemax": "100"
+                                      }
+                                    })
+                                  ]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "progress progress-sm mt-1 mb-0 box-shadow-2"
+                                  },
+                                  [
+                                    _c("div", {
+                                      staticClass:
+                                        "progress-bar bg-gradient-x-danger",
+                                      style: { width: server.cpu_usage + "%" },
+                                      attrs: {
+                                        role: "progressbar",
+                                        "aria-valuenow": "85",
+                                        "aria-valuemin": "0",
+                                        "aria-valuemax": "100"
+                                      }
+                                    })
+                                  ]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _vm._v(
+                                  "\n                                        Network\n                                    "
+                                )
                               ]),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-truncate" }, [
-                                _vm._v("iPone X")
+                                _vm._v("Live")
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-truncate" }, [
+                                _vm._v(_vm._s(server.output))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-truncate" }, [
+                                _vm._v(_vm._s(server.input))
                               ])
                             ])
                           })
@@ -47500,75 +47543,6 @@ var staticRenderFns = [
         _c("th", { staticClass: "border-top-0" }, [_vm._v("Input")])
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c(
-        "div",
-        { staticClass: "progress progress-sm mt-1 mb-0 box-shadow-2" },
-        [
-          _c("div", {
-            staticClass: "progress-bar bg-gradient-x-danger",
-            staticStyle: { width: "85%" },
-            attrs: {
-              role: "progressbar",
-              "aria-valuenow": "85",
-              "aria-valuemin": "0",
-              "aria-valuemax": "100"
-            }
-          })
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c(
-        "div",
-        { staticClass: "progress progress-sm mt-1 mb-0 box-shadow-2" },
-        [
-          _c("div", {
-            staticClass: "progress-bar bg-gradient-x-danger",
-            staticStyle: { width: "85%" },
-            attrs: {
-              role: "progressbar",
-              "aria-valuenow": "85",
-              "aria-valuemin": "0",
-              "aria-valuemax": "100"
-            }
-          })
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c(
-        "div",
-        { staticClass: "progress progress-sm mt-1 mb-0 box-shadow-2" },
-        [
-          _c("div", {
-            staticClass: "progress-bar bg-gradient-x-danger",
-            staticStyle: { width: "85%" },
-            attrs: {
-              role: "progressbar",
-              "aria-valuenow": "85",
-              "aria-valuemin": "0",
-              "aria-valuemax": "100"
-            }
-          })
-        ]
-      )
-    ])
   }
 ]
 render._withStripped = true
@@ -47579,6 +47553,12 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-3eedcac8", module.exports)
   }
 }
+
+/***/ }),
+/* 43 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

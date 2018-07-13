@@ -28,30 +28,27 @@
                                     <tbody>
                                     <tr v-for="server in servers">
                                         <td class="text-truncate">{{server.server_name}}</td>
-                                        <td class="text-truncate"></td>
-                                        <td class="text-truncate">iPone X</td>
-                                        <td class="text-truncate">iPone X</td>
+                                        <td class="text-truncate">Online User</td>
+                                        <td class="text-truncate">{{server.open_connections}}</td>
+                                        <td class="text-truncate">{{server.uptime}}</td>
                                         <td>
                                             <div class="progress progress-sm mt-1 mb-0 box-shadow-2">
-                                                <div class="progress-bar bg-gradient-x-danger" role="progressbar" style="width: 85%"
+                                                <div class="progress-bar bg-gradient-x-success" role="progressbar" :style="{'width': server.ram_used_percent + '%'}"
                                                      aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="progress progress-sm mt-1 mb-0 box-shadow-2">
-                                                <div class="progress-bar bg-gradient-x-danger" role="progressbar" style="width: 85%"
+                                                <div class="progress-bar bg-gradient-x-danger" role="progressbar" :style="{'width': server.cpu_usage + '%'}"
                                                      aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="progress progress-sm mt-1 mb-0 box-shadow-2">
-                                                <div class="progress-bar bg-gradient-x-danger" role="progressbar" style="width: 85%"
-                                                     aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
+                                            Network
                                         </td>
-                                        <td class="text-truncate">iPone X</td>
-                                        <td class="text-truncate">iPone X</td>
-                                        <td class="text-truncate">iPone X</td>
+                                        <td class="text-truncate">Live</td>
+                                        <td class="text-truncate">{{server.output}}</td>
+                                        <td class="text-truncate">{{server.input}}</td>
 
                                     </tr>
                                     </tbody>
@@ -75,6 +72,9 @@
         },
         created() {
             this.getServers();
+            setInterval(function () {
+                this.getServers();
+            }.bind(this), 10000);
         },
         methods: {
             getServers(){
@@ -83,6 +83,9 @@
                      const self = this;
                      self.servers = response.data;
                 });
+            },
+            calcBar(data){
+                return data*10
             }
         }
     }
