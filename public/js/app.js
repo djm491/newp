@@ -47126,17 +47126,21 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(48)
+}
 var normalizeComponent = __webpack_require__(40)
 /* script */
 var __vue_script__ = __webpack_require__(41)
 /* template */
-var __vue_template__ = __webpack_require__(42)
+var __vue_template__ = __webpack_require__(52)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = null
+var __vue_scopeId__ = "data-v-3eedcac8"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -47348,6 +47352,63 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -47373,12 +47434,408 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         calcBar: function calcBar(data) {
             return data * 10;
+        },
+        roundFunction: function roundFunction(data) {
+            return Math.round(data);
         }
     }
 });
 
 /***/ }),
-/* 42 */
+/* 42 */,
+/* 43 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 44 */,
+/* 45 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
+
+/***/ }),
+/* 46 */,
+/* 47 */,
+/* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(49);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(50)("73a27ce0", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3eedcac8\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./dashboard.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3eedcac8\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./dashboard.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(45)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.card-body p[data-v-3eedcac8]{\n    padding: 0px 5px 2px 5px;\n    border-bottom: 1px solid #E3EBF3;\n}\n.card-body p span[data-v-3eedcac8]{\n    font-weight: normal !important;\n}\n.progress[data-v-3eedcac8] {\n    width: 65px;\n    margin: 0.4rem 0 0 20px !important;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+  Modified by Evan You @yyx990803
+*/
+
+var hasDocument = typeof document !== 'undefined'
+
+if (typeof DEBUG !== 'undefined' && DEBUG) {
+  if (!hasDocument) {
+    throw new Error(
+    'vue-style-loader cannot be used in a non-browser environment. ' +
+    "Use { target: 'node' } in your Webpack config to indicate a server-rendering environment."
+  ) }
+}
+
+var listToStyles = __webpack_require__(51)
+
+/*
+type StyleObject = {
+  id: number;
+  parts: Array<StyleObjectPart>
+}
+
+type StyleObjectPart = {
+  css: string;
+  media: string;
+  sourceMap: ?string
+}
+*/
+
+var stylesInDom = {/*
+  [id: number]: {
+    id: number,
+    refs: number,
+    parts: Array<(obj?: StyleObjectPart) => void>
+  }
+*/}
+
+var head = hasDocument && (document.head || document.getElementsByTagName('head')[0])
+var singletonElement = null
+var singletonCounter = 0
+var isProduction = false
+var noop = function () {}
+var options = null
+var ssrIdKey = 'data-vue-ssr-id'
+
+// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+// tags it will allow on a page
+var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
+
+module.exports = function (parentId, list, _isProduction, _options) {
+  isProduction = _isProduction
+
+  options = _options || {}
+
+  var styles = listToStyles(parentId, list)
+  addStylesToDom(styles)
+
+  return function update (newList) {
+    var mayRemove = []
+    for (var i = 0; i < styles.length; i++) {
+      var item = styles[i]
+      var domStyle = stylesInDom[item.id]
+      domStyle.refs--
+      mayRemove.push(domStyle)
+    }
+    if (newList) {
+      styles = listToStyles(parentId, newList)
+      addStylesToDom(styles)
+    } else {
+      styles = []
+    }
+    for (var i = 0; i < mayRemove.length; i++) {
+      var domStyle = mayRemove[i]
+      if (domStyle.refs === 0) {
+        for (var j = 0; j < domStyle.parts.length; j++) {
+          domStyle.parts[j]()
+        }
+        delete stylesInDom[domStyle.id]
+      }
+    }
+  }
+}
+
+function addStylesToDom (styles /* Array<StyleObject> */) {
+  for (var i = 0; i < styles.length; i++) {
+    var item = styles[i]
+    var domStyle = stylesInDom[item.id]
+    if (domStyle) {
+      domStyle.refs++
+      for (var j = 0; j < domStyle.parts.length; j++) {
+        domStyle.parts[j](item.parts[j])
+      }
+      for (; j < item.parts.length; j++) {
+        domStyle.parts.push(addStyle(item.parts[j]))
+      }
+      if (domStyle.parts.length > item.parts.length) {
+        domStyle.parts.length = item.parts.length
+      }
+    } else {
+      var parts = []
+      for (var j = 0; j < item.parts.length; j++) {
+        parts.push(addStyle(item.parts[j]))
+      }
+      stylesInDom[item.id] = { id: item.id, refs: 1, parts: parts }
+    }
+  }
+}
+
+function createStyleElement () {
+  var styleElement = document.createElement('style')
+  styleElement.type = 'text/css'
+  head.appendChild(styleElement)
+  return styleElement
+}
+
+function addStyle (obj /* StyleObjectPart */) {
+  var update, remove
+  var styleElement = document.querySelector('style[' + ssrIdKey + '~="' + obj.id + '"]')
+
+  if (styleElement) {
+    if (isProduction) {
+      // has SSR styles and in production mode.
+      // simply do nothing.
+      return noop
+    } else {
+      // has SSR styles but in dev mode.
+      // for some reason Chrome can't handle source map in server-rendered
+      // style tags - source maps in <style> only works if the style tag is
+      // created and inserted dynamically. So we remove the server rendered
+      // styles and inject new ones.
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  if (isOldIE) {
+    // use singleton mode for IE9.
+    var styleIndex = singletonCounter++
+    styleElement = singletonElement || (singletonElement = createStyleElement())
+    update = applyToSingletonTag.bind(null, styleElement, styleIndex, false)
+    remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true)
+  } else {
+    // use multi-style-tag mode in all other cases
+    styleElement = createStyleElement()
+    update = applyToTag.bind(null, styleElement)
+    remove = function () {
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  update(obj)
+
+  return function updateStyle (newObj /* StyleObjectPart */) {
+    if (newObj) {
+      if (newObj.css === obj.css &&
+          newObj.media === obj.media &&
+          newObj.sourceMap === obj.sourceMap) {
+        return
+      }
+      update(obj = newObj)
+    } else {
+      remove()
+    }
+  }
+}
+
+var replaceText = (function () {
+  var textStore = []
+
+  return function (index, replacement) {
+    textStore[index] = replacement
+    return textStore.filter(Boolean).join('\n')
+  }
+})()
+
+function applyToSingletonTag (styleElement, index, remove, obj) {
+  var css = remove ? '' : obj.css
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = replaceText(index, css)
+  } else {
+    var cssNode = document.createTextNode(css)
+    var childNodes = styleElement.childNodes
+    if (childNodes[index]) styleElement.removeChild(childNodes[index])
+    if (childNodes.length) {
+      styleElement.insertBefore(cssNode, childNodes[index])
+    } else {
+      styleElement.appendChild(cssNode)
+    }
+  }
+}
+
+function applyToTag (styleElement, obj) {
+  var css = obj.css
+  var media = obj.media
+  var sourceMap = obj.sourceMap
+
+  if (media) {
+    styleElement.setAttribute('media', media)
+  }
+  if (options.ssrId) {
+    styleElement.setAttribute(ssrIdKey, obj.id)
+  }
+
+  if (sourceMap) {
+    // https://developer.chrome.com/devtools/docs/javascript-debugging
+    // this makes source maps inside style tags work properly in Chrome
+    css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */'
+    // http://stackoverflow.com/a/26603875
+    css += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + ' */'
+  }
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = css
+  } else {
+    while (styleElement.firstChild) {
+      styleElement.removeChild(styleElement.firstChild)
+    }
+    styleElement.appendChild(document.createTextNode(css))
+  }
+}
+
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports) {
+
+/**
+ * Translates the list format produced by css-loader into something
+ * easier to manipulate.
+ */
+module.exports = function listToStyles (parentId, list) {
+  var styles = []
+  var newStyles = {}
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i]
+    var id = item[0]
+    var css = item[1]
+    var media = item[2]
+    var sourceMap = item[3]
+    var part = {
+      id: parentId + ':' + i,
+      css: css,
+      media: media,
+      sourceMap: sourceMap
+    }
+    if (!newStyles[id]) {
+      styles.push(newStyles[id] = { id: id, parts: [part] })
+    } else {
+      newStyles[id].parts.push(part)
+    }
+  }
+  return styles
+}
+
+
+/***/ }),
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -47386,120 +47843,162 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { attrs: { id: "root" } }, [
-    _c("div", { staticClass: "wrapper container" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-12", attrs: { id: "recent-sales" } }, [
-          _c("div", { staticClass: "card" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-content mt-1" }, [
-              _vm.servers && _vm.servers.length
-                ? _c("div", { staticClass: "table-responsive" }, [
+    _c("div", { staticClass: "container-fluid" }, [
+      _c(
+        "div",
+        { staticClass: "row" },
+        _vm._l(_vm.servers, function(server) {
+          return _c("div", { staticClass: "col-12 col-md-4" }, [
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-header" }, [
+                _c("h4", { staticClass: "card-title" }, [
+                  _vm._v(_vm._s(server.server_name))
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-content collapse show" }, [
+                _c("div", { staticClass: "card-body p-0" }, [
+                  _vm._m(0, true),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-bold-600" }, [
+                    _vm._v(
+                      "\n                                Open Connections\n                                "
+                    ),
+                    _c("span", { staticClass: "float-right" }, [
+                      _vm._v(_vm._s(server.open_connections))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-bold-600" }, [
+                    _vm._v(
+                      "\n                                UpTime\n                                "
+                    ),
+                    _c("span", { staticClass: "float-right" }, [
+                      _vm._v(_vm._s(server.uptime))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-bold-600" }, [
+                    _vm._v(
+                      "\n                                RAM\n                            "
+                    ),
                     _c(
-                      "table",
+                      "span",
                       {
-                        staticClass: "table table-hover table-xl mb-0",
-                        attrs: { id: "recent-orders" }
+                        staticClass:
+                          "progress progress-sm  mb-1 box-shadow-2 float-right"
                       },
                       [
-                        _vm._m(1),
-                        _vm._v(" "),
-                        _c(
-                          "tbody",
-                          _vm._l(_vm.servers, function(server) {
-                            return _c("tr", [
-                              _c("td", { staticClass: "text-truncate" }, [
-                                _vm._v(_vm._s(server.server_name))
-                              ]),
-                              _vm._v(" "),
-                              _c("td", { staticClass: "text-truncate" }, [
-                                _vm._v("Online User")
-                              ]),
-                              _vm._v(" "),
-                              _c("td", { staticClass: "text-truncate" }, [
-                                _vm._v(_vm._s(server.open_connections))
-                              ]),
-                              _vm._v(" "),
-                              _c("td", { staticClass: "text-truncate" }, [
-                                _vm._v(_vm._s(server.uptime))
-                              ]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "progress progress-sm mt-1 mb-0 box-shadow-2"
-                                  },
-                                  [
-                                    _c("div", {
-                                      staticClass:
-                                        "progress-bar bg-gradient-x-success",
-                                      style: {
-                                        width: server.ram_used_percent + "%"
-                                      },
-                                      attrs: {
-                                        role: "progressbar",
-                                        "aria-valuenow": "85",
-                                        "aria-valuemin": "0",
-                                        "aria-valuemax": "100"
-                                      }
-                                    })
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "progress progress-sm mt-1 mb-0 box-shadow-2"
-                                  },
-                                  [
-                                    _c("div", {
-                                      staticClass:
-                                        "progress-bar bg-gradient-x-danger",
-                                      style: { width: server.cpu_usage + "%" },
-                                      attrs: {
-                                        role: "progressbar",
-                                        "aria-valuenow": "85",
-                                        "aria-valuemin": "0",
-                                        "aria-valuemax": "100"
-                                      }
-                                    })
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _vm._v(
-                                  "\n                                        Network\n                                    "
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("td", { staticClass: "text-truncate" }, [
-                                _vm._v("Live")
-                              ]),
-                              _vm._v(" "),
-                              _c("td", { staticClass: "text-truncate" }, [
-                                _vm._v(_vm._s(server.output))
-                              ]),
-                              _vm._v(" "),
-                              _c("td", { staticClass: "text-truncate" }, [
-                                _vm._v(_vm._s(server.input))
-                              ])
-                            ])
-                          })
-                        )
+                        _c("span", {
+                          staticClass: "progress-bar bg-gradient-x-warning",
+                          style: { width: server.ram_used_percent + "%" },
+                          attrs: {
+                            role: "progressbar",
+                            "aria-valuenow": "85",
+                            "aria-valuemin": "0",
+                            "aria-valuemax": "100"
+                          }
+                        })
                       ]
-                    )
+                    ),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "float-right" }, [
+                      _vm._v(
+                        _vm._s(_vm.roundFunction(server.ram_used_percent)) + "%"
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-bold-600" }, [
+                    _vm._v(
+                      "\n                                CPU\n                                "
+                    ),
+                    _c(
+                      "span",
+                      {
+                        staticClass:
+                          "progress progress-sm  mb-1 box-shadow-2 float-right"
+                      },
+                      [
+                        _c("span", {
+                          staticClass: "progress-bar bg-gradient-x-success",
+                          style: { width: server.cpu_usage + "%" },
+                          attrs: {
+                            role: "progressbar",
+                            "aria-valuenow": "85",
+                            "aria-valuemin": "0",
+                            "aria-valuemax": "100"
+                          }
+                        })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "float-right" }, [
+                      _vm._v(_vm._s(_vm.roundFunction(server.cpu_usage)) + "%")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-bold-600" }, [
+                    _vm._v(
+                      "\n                                 NETWORK\n                                "
+                    ),
+                    _c(
+                      "span",
+                      {
+                        staticClass:
+                          "progress progress-sm  mb-1 box-shadow-2 float-right"
+                      },
+                      [
+                        _c("span", {
+                          staticClass: "progress-bar bg-gradient-x-danger",
+                          style: { width: server.network + "%" },
+                          attrs: {
+                            role: "progressbar",
+                            "aria-valuenow": "85",
+                            "aria-valuemin": "0",
+                            "aria-valuemax": "100"
+                          }
+                        })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "float-right" }, [
+                      _vm._v(_vm._s(_vm.roundFunction(server.network)) + "%")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-bold-600" }, [
+                    _vm._v(
+                      "\n                                Live\n                                "
+                    ),
+                    _c("span", { staticClass: "float-right" }, [
+                      _vm._v(_vm._s(server.live_streaming))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-bold-600" }, [
+                    _vm._v(
+                      "\n                                Output\n                                "
+                    ),
+                    _c("span", { staticClass: "float-right" }, [
+                      _vm._v(_vm._s(server.output))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-bold-600" }, [
+                    _vm._v(
+                      "\n                                Input\n                                "
+                    ),
+                    _c("span", { staticClass: "float-right" }, [
+                      _vm._v(_vm._s(server.input))
+                    ])
                   ])
-                : _vm._e()
+                ])
+              ])
             ])
           ])
-        ])
-      ])
+        })
+      )
     ])
   ])
 }
@@ -47508,40 +48007,11 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header" }, [
-      _c("h4", { staticClass: "card-title" }, [_vm._v("Servers Info")]),
-      _vm._v(" "),
-      _c("a", { staticClass: "heading-elements-toggle" }, [
-        _c("i", { staticClass: "la la-ellipsis-v font-medium-3" })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", { staticClass: "border-top-0" }, [_vm._v("Server Name")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "border-top-0" }, [_vm._v("Online Users")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "border-top-0" }, [_vm._v("Open Connections")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "border-top-0" }, [_vm._v("Uptime")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "border-top-0" }, [_vm._v("RAM")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "border-top-0" }, [_vm._v("CPU")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "border-top-0" }, [_vm._v("NETWORK")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "border-top-0" }, [_vm._v("Live")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "border-top-0" }, [_vm._v("Output")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "border-top-0" }, [_vm._v("Input")])
-      ])
+    return _c("p", { staticClass: "text-bold-600" }, [
+      _vm._v(
+        "\n                                Online Users\n                                "
+      ),
+      _c("span", { staticClass: "float-right" }, [_vm._v("89%")])
     ])
   }
 ]
@@ -47553,12 +48023,6 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-3eedcac8", module.exports)
   }
 }
-
-/***/ }),
-/* 43 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
