@@ -16,6 +16,7 @@ class Servers extends Model
         $servers = Servers::all();
         foreach ($servers as $server){
             $server->open_connections = $this->user_activity->openConnection($server->id);
+            $server->online_users = $this->user_activity->onlineUsers($server->id);
             $server->watchdog_data = json_decode($server->watchdog_data);
             $server->server_hardware = json_decode($server->server_hardware);
             $server->ram_used_percent = $server->watchdog_data->total_mem_used_percent;
@@ -25,8 +26,14 @@ class Servers extends Model
             $server->cpu_usage = $server->watchdog_data->cpu_load_average;
             $network = trim(preg_replace('/\s+/', ' ', $server->server_hardware->network_speed));
             $server->live_streaming = trim(preg_replace('/\s+/', ' ', $server->server_hardware->total_running_streams));
-            $server->network = ( $network / $server->server_hardware->bytes_sent ) + ( $network / $server->server_hardware->bytes_received  );
+            $total_bytes =  $server->watchdog_data->bytes_sent  + $server->watchdog_data->bytes_received ;
+            $server->network = round($this->calculateNetworkSpeed($network,$total_bytes));
         }
         return $servers;
+    }
+
+    private function calculateNetworkSpeed($network,$total_bytes) {
+        $network = ( $total_bytes /  $network )*100;
+        return $network;
     }
 }

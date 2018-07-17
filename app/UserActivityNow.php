@@ -11,4 +11,7 @@ class UserActivityNow extends Model
     public function openConnection($server_id){
        return UserActivityNow::where('user_activity_now.server_id','=',$server_id)->count();
     }
+    public function onlineUsers($server_id){
+        return UserActivityNow::where('user_activity_now.server_id','=',$server_id)->count();
+    }
 }
