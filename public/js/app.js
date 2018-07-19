@@ -47786,6 +47786,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -47827,155 +47835,254 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { attrs: { id: "root" } }, [
-    _c("div", { staticClass: "container-fluid" }, [
-      _c(
-        "div",
-        { staticClass: "row" },
-        _vm._l(_vm.servers, function(server) {
-          return _c("div", { staticClass: "col-12 col-md-4" }, [
-            _c("div", { staticClass: "card" }, [
-              _c("div", { staticClass: "card-header" }, [
-                _c("h4", { staticClass: "card-title" }, [
-                  _vm._v(_vm._s(server.server_name))
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "card-content collapse show" }, [
-                _c("div", { staticClass: "card-body p-0" }, [
-                  _c("p", { staticClass: "text-bold-600" }, [
-                    _vm._v("Online Users"),
-                    _c("span", { staticClass: "float-right" }, [
-                      _vm._v(_vm._s(server.online_users))
-                    ])
-                  ]),
+    _vm._m(0),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "row" },
+      _vm._l(_vm.servers, function(server) {
+        return _c("div", { staticClass: "col-12 col-md-4" }, [
+          _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card-header" }, [
+              _c("h4", { staticClass: "card-title" }, [
+                _vm._v(_vm._s(server.server_name))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-content collapse show" }, [
+              _c("div", { staticClass: "card-body p-0" }, [
+                _c("p", { staticClass: "text-bold-600" }, [
+                  _vm._v("Online Users"),
+                  _c("span", { staticClass: "float-right" }, [
+                    _vm._v(_vm._s(server.online_users))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "text-bold-600" }, [
+                  _vm._v("Open Connections"),
+                  _c("span", { staticClass: "float-right" }, [
+                    _vm._v(_vm._s(server.open_connections))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "text-bold-600" }, [
+                  _vm._v("UpTime"),
+                  _c("span", { staticClass: "float-right" }, [
+                    _vm._v(_vm._s(server.uptime))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "text-bold-600" }, [
+                  _vm._v("RAM\n                            "),
+                  _c(
+                    "span",
+                    {
+                      staticClass:
+                        "progress progress-sm  mb-1 box-shadow-2 float-right"
+                    },
+                    [
+                      _c("span", {
+                        staticClass: "progress-bar bg-gradient-x-warning",
+                        style: { width: server.ram_used_percent + "%" },
+                        attrs: {
+                          role: "progressbar",
+                          "aria-valuenow": "85",
+                          "aria-valuemin": "0",
+                          "aria-valuemax": "100"
+                        }
+                      })
+                    ]
+                  ),
                   _vm._v(" "),
-                  _c("p", { staticClass: "text-bold-600" }, [
-                    _vm._v("Open Connections"),
-                    _c("span", { staticClass: "float-right" }, [
-                      _vm._v(_vm._s(server.open_connections))
-                    ])
-                  ]),
+                  _c("span", { staticClass: "float-right" }, [
+                    _vm._v(
+                      _vm._s(_vm.roundFunction(server.ram_used_percent)) + "%"
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "text-bold-600" }, [
+                  _vm._v("CPU\n                            "),
+                  _c(
+                    "span",
+                    {
+                      staticClass:
+                        "progress progress-sm  mb-1 box-shadow-2 float-right"
+                    },
+                    [
+                      _c("span", {
+                        staticClass: "progress-bar bg-gradient-x-success",
+                        style: { width: server.cpu_usage + "%" },
+                        attrs: {
+                          role: "progressbar",
+                          "aria-valuenow": "85",
+                          "aria-valuemin": "0",
+                          "aria-valuemax": "100"
+                        }
+                      })
+                    ]
+                  ),
                   _vm._v(" "),
-                  _c("p", { staticClass: "text-bold-600" }, [
-                    _vm._v("UpTime"),
-                    _c("span", { staticClass: "float-right" }, [
-                      _vm._v(_vm._s(server.uptime))
-                    ])
-                  ]),
+                  _c("span", { staticClass: "float-right" }, [
+                    _vm._v(_vm._s(_vm.roundFunction(server.cpu_usage)) + "%")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "text-bold-600" }, [
+                  _vm._v("NETWORK\n                            "),
+                  _c(
+                    "span",
+                    {
+                      staticClass:
+                        "progress progress-sm  mb-1 box-shadow-2 float-right"
+                    },
+                    [
+                      _c("span", {
+                        staticClass: "progress-bar bg-gradient-x-danger",
+                        style: { width: server.network + "%" },
+                        attrs: {
+                          role: "progressbar",
+                          "aria-valuenow": "85",
+                          "aria-valuemin": "0",
+                          "aria-valuemax": "100"
+                        }
+                      })
+                    ]
+                  ),
                   _vm._v(" "),
-                  _c("p", { staticClass: "text-bold-600" }, [
-                    _vm._v("RAM\n                           "),
-                    _c(
-                      "span",
-                      {
-                        staticClass:
-                          "progress progress-sm  mb-1 box-shadow-2 float-right"
-                      },
-                      [
-                        _c("span", {
-                          staticClass: "progress-bar bg-gradient-x-warning",
-                          style: { width: server.ram_used_percent + "%" },
-                          attrs: {
-                            role: "progressbar",
-                            "aria-valuenow": "85",
-                            "aria-valuemin": "0",
-                            "aria-valuemax": "100"
-                          }
-                        })
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "float-right" }, [
-                      _vm._v(
-                        _vm._s(_vm.roundFunction(server.ram_used_percent)) + "%"
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "text-bold-600" }, [
-                    _vm._v("CPU\n                         "),
-                    _c(
-                      "span",
-                      {
-                        staticClass:
-                          "progress progress-sm  mb-1 box-shadow-2 float-right"
-                      },
-                      [
-                        _c("span", {
-                          staticClass: "progress-bar bg-gradient-x-success",
-                          style: { width: server.cpu_usage + "%" },
-                          attrs: {
-                            role: "progressbar",
-                            "aria-valuenow": "85",
-                            "aria-valuemin": "0",
-                            "aria-valuemax": "100"
-                          }
-                        })
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "float-right" }, [
-                      _vm._v(_vm._s(_vm.roundFunction(server.cpu_usage)) + "%")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "text-bold-600" }, [
-                    _vm._v("NETWORK\n                         "),
-                    _c(
-                      "span",
-                      {
-                        staticClass:
-                          "progress progress-sm  mb-1 box-shadow-2 float-right"
-                      },
-                      [
-                        _c("span", {
-                          staticClass: "progress-bar bg-gradient-x-danger",
-                          style: { width: server.network + "%" },
-                          attrs: {
-                            role: "progressbar",
-                            "aria-valuenow": "85",
-                            "aria-valuemin": "0",
-                            "aria-valuemax": "100"
-                          }
-                        })
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "float-right" }, [
-                      _vm._v(_vm._s(_vm.roundFunction(server.network)) + "%")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "text-bold-600" }, [
-                    _vm._v(" Live\n                           "),
-                    _c("span", { staticClass: "float-right" }, [
-                      _vm._v(_vm._s(server.live_streaming))
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "text-bold-600" }, [
-                    _vm._v("Output\n                         "),
-                    _c("span", { staticClass: "float-right" }, [
-                      _vm._v(_vm._s(server.output))
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "text-bold-600" }, [
-                    _vm._v("Input\n                         "),
-                    _c("span", { staticClass: "float-right" }, [
-                      _vm._v(_vm._s(server.input))
-                    ])
+                  _c("span", { staticClass: "float-right" }, [
+                    _vm._v(_vm._s(_vm.roundFunction(server.network)) + "%")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "text-bold-600" }, [
+                  _vm._v(" Live\n                            "),
+                  _c("span", { staticClass: "float-right" }, [
+                    _vm._v(_vm._s(server.live_streaming))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "text-bold-600" }, [
+                  _vm._v("Output\n                            "),
+                  _c("span", { staticClass: "float-right" }, [
+                    _vm._v(_vm._s(server.output))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "text-bold-600" }, [
+                  _vm._v("Input\n                            "),
+                  _c("span", { staticClass: "float-right" }, [
+                    _vm._v(_vm._s(server.input))
                   ])
                 ])
               ])
             ])
           ])
-        })
-      )
-    ])
+        ])
+      })
+    )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-lg-3 col-3" }, [
+        _c("div", { staticClass: "card pull-up" }, [
+          _c("div", { staticClass: "card-content" }, [
+            _c("div", { staticClass: "card-body" }, [
+              _c("div", { staticClass: "media d-flex" }, [
+                _c("div", { staticClass: "media-body text-left" }, [
+                  _c("h6", { staticClass: "text-muted" }, [
+                    _vm._v("Order Value ")
+                  ]),
+                  _vm._v(" "),
+                  _c("h3", [_vm._v("$ 88,568")])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "align-self-center" }, [
+                  _c("i", {
+                    staticClass: "icon-trophy success font-large-2 float-right"
+                  })
+                ])
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-lg-3 col-3" }, [
+        _c("div", { staticClass: "card pull-up" }, [
+          _c("div", { staticClass: "card-content" }, [
+            _c("div", { staticClass: "card-body" }, [
+              _c("div", { staticClass: "media d-flex" }, [
+                _c("div", { staticClass: "media-body text-left" }, [
+                  _c("h6", { staticClass: "text-muted" }, [_vm._v("Calls")]),
+                  _vm._v(" "),
+                  _c("h3", [_vm._v("3,568")])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "align-self-center" }, [
+                  _c("i", {
+                    staticClass: "icon-call-in danger font-large-2 float-right"
+                  })
+                ])
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-lg-3 col-3" }, [
+        _c("div", { staticClass: "card pull-up" }, [
+          _c("div", { staticClass: "card-content" }, [
+            _c("div", { staticClass: "card-body" }, [
+              _c("div", { staticClass: "media d-flex" }, [
+                _c("div", { staticClass: "media-body text-left" }, [
+                  _c("h6", { staticClass: "text-muted" }, [
+                    _vm._v("Order Value ")
+                  ]),
+                  _vm._v(" "),
+                  _c("h3", [_vm._v("$ 88,568")])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "align-self-center" }, [
+                  _c("i", {
+                    staticClass: "icon-trophy success font-large-2 float-right"
+                  })
+                ])
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-lg-3 col-3" }, [
+        _c("div", { staticClass: "card pull-up" }, [
+          _c("div", { staticClass: "card-content" }, [
+            _c("div", { staticClass: "card-body" }, [
+              _c("div", { staticClass: "media d-flex" }, [
+                _c("div", { staticClass: "media-body text-left" }, [
+                  _c("h6", { staticClass: "text-muted" }, [_vm._v("Calls")]),
+                  _vm._v(" "),
+                  _c("h3", [_vm._v("3,568")])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "align-self-center" }, [
+                  _c("i", {
+                    staticClass: "icon-call-in danger font-large-2 float-right"
+                  })
+                ])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
