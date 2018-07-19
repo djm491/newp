@@ -66,18 +66,18 @@
 
         </div>
         <div class="row">
-            <div class="col-12 col-md-4" v-for="(server,index) in servers">
+            <div class="col-12 col-md-3 " v-for="(server,index) in servers">
                 <div class="card" :id="'exPopover1-'+index" variant="primary">
                     <div class="card-header">
                         <h4 class="card-title">{{server.server_name}}</h4>
                     </div>
                     <div class="card-content collapse show">
                         <div class="card-body p-0">
-                            <p class="text-bold-600">Online Users<span class="float-right">{{server.online_users}}</span></p>
-                            <p class="text-bold-600">Open Connections<span class="float-right">{{server.open_connections}}</span></p>
-                            <p class="text-bold-600">UpTime<span class="float-right">{{server.uptime}}</span></p>
+                            <p class="text-bold-600 table_row">Online Users<span class="float-right">{{server.online_users}}</span></p>
+                            <p class="text-bold-600 table_row">Open Connections<span class="float-right">{{server.open_connections}}</span></p>
+                            <p class="text-bold-600 table_row">UpTime<span class="float-right">{{server.uptime}}</span></p>
 
-                            <p class="text-bold-600"> Live
+                            <p class="text-bold-600 table_row"> Live
                                 <span class="float-right">{{server.live_streaming}}</span>
                             </p>
                         </div>
@@ -115,7 +115,7 @@
                                            aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
                                     </span>
                              </span>
-                            <span class="float-right">{{roundFunction(server.network)}}%</span>
+                            <span class="float-right" style="margin-left:3px;">{{roundFunction(server.network)}}%</span>
                         </p>
                     </template>
                 </b-popover>
@@ -175,10 +175,22 @@
        font-weight: normal !important;
     }
     .progress {
-       width: 65px;
-       margin: 0.4rem 0 0 20px !important;
+       width: 50px !important;
+       margin: 0.4rem 0 0 10px !important;
     }
     .mb-16{
         margin-bottom: 16px;
+    }
+    .card-title{
+        font-size: 0.9em;
+        letter-spacing: 0;
+    }
+    .card-header {
+        padding: 1.5rem 0.5rem;
+        text-align: center;
+    }
+    .table_row{
+        font-size: 12px;
+        margin-bottom: 0;
     }
 </style>

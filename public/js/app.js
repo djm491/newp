@@ -47215,7 +47215,7 @@ exports = module.exports = __webpack_require__(42)(false);
 
 
 // module
-exports.push([module.i, "\n.card-body p[data-v-3eedcac8]{\n     padding: 0px 5px 2px 5px;\n     border-bottom: 1px solid #E3EBF3;\n}\n.card-body p span[data-v-3eedcac8]{\n    font-weight: normal !important;\n}\n.progress[data-v-3eedcac8] {\n    width: 65px;\n    margin: 0.4rem 0 0 20px !important;\n}\n.mb-16[data-v-3eedcac8]{\n     margin-bottom: 16px;\n}\n", ""]);
+exports.push([module.i, "\n.card-body p[data-v-3eedcac8]{\n     padding: 0px 5px 2px 5px;\n     border-bottom: 1px solid #E3EBF3;\n}\n.card-body p span[data-v-3eedcac8]{\n    font-weight: normal !important;\n}\n.progress[data-v-3eedcac8] {\n    width: 50px !important;\n    margin: 0.4rem 0 0 10px !important;\n}\n.mb-16[data-v-3eedcac8]{\n     margin-bottom: 16px;\n}\n.card-title[data-v-3eedcac8]{\n     font-size: 0.9em;\n     letter-spacing: 0;\n}\n.card-header[data-v-3eedcac8] {\n     padding: 1.5rem 0.5rem;\n     text-align: center;\n}\n.table_row[data-v-3eedcac8]{\n     font-size: 12px;\n     margin-bottom: 0;\n}\n", ""]);
 
 // exports
 
@@ -47957,7 +47957,7 @@ var render = function() {
       _vm._l(_vm.servers, function(server, index) {
         return _c(
           "div",
-          { staticClass: "col-12 col-md-4" },
+          { staticClass: "col-12 col-md-3 " },
           [
             _c(
               "div",
@@ -47974,28 +47974,28 @@ var render = function() {
                 _vm._v(" "),
                 _c("div", { staticClass: "card-content collapse show" }, [
                   _c("div", { staticClass: "card-body p-0" }, [
-                    _c("p", { staticClass: "text-bold-600" }, [
+                    _c("p", { staticClass: "text-bold-600 table_row" }, [
                       _vm._v("Online Users"),
                       _c("span", { staticClass: "float-right" }, [
                         _vm._v(_vm._s(server.online_users))
                       ])
                     ]),
                     _vm._v(" "),
-                    _c("p", { staticClass: "text-bold-600" }, [
+                    _c("p", { staticClass: "text-bold-600 table_row" }, [
                       _vm._v("Open Connections"),
                       _c("span", { staticClass: "float-right" }, [
                         _vm._v(_vm._s(server.open_connections))
                       ])
                     ]),
                     _vm._v(" "),
-                    _c("p", { staticClass: "text-bold-600" }, [
+                    _c("p", { staticClass: "text-bold-600 table_row" }, [
                       _vm._v("UpTime"),
                       _c("span", { staticClass: "float-right" }, [
                         _vm._v(_vm._s(server.uptime))
                       ])
                     ]),
                     _vm._v(" "),
-                    _c("p", { staticClass: "text-bold-600" }, [
+                    _c("p", { staticClass: "text-bold-600 table_row" }, [
                       _vm._v(" Live\n                            "),
                       _c("span", { staticClass: "float-right" }, [
                         _vm._v(_vm._s(server.live_streaming))
@@ -48109,9 +48109,14 @@ var render = function() {
                       ]
                     ),
                     _vm._v(" "),
-                    _c("span", { staticClass: "float-right" }, [
-                      _vm._v(_vm._s(_vm.roundFunction(server.network)) + "%")
-                    ])
+                    _c(
+                      "span",
+                      {
+                        staticClass: "float-right",
+                        staticStyle: { "margin-left": "3px" }
+                      },
+                      [_vm._v(_vm._s(_vm.roundFunction(server.network)) + "%")]
+                    )
                   ])
                 ]
               ],
