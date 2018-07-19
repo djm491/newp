@@ -47207,7 +47207,7 @@ exports = module.exports = __webpack_require__(42)(false);
 
 
 // module
-exports.push([module.i, "\n.card-body p[data-v-3eedcac8]{\n     padding: 0px 5px 2px 5px;\n     border-bottom: 1px solid #E3EBF3;\n}\n.card-body p span[data-v-3eedcac8]{\n    font-weight: normal !important;\n}\n.progress[data-v-3eedcac8] {\n    width: 65px;\n    margin: 0.4rem 0 0 20px !important;\n}\n", ""]);
+exports.push([module.i, "\n.card-body p[data-v-3eedcac8]{\n     padding: 0px 5px 2px 5px;\n     border-bottom: 1px solid #E3EBF3;\n}\n.card-body p span[data-v-3eedcac8]{\n    font-weight: normal !important;\n}\n.progress[data-v-3eedcac8] {\n    width: 65px;\n    margin: 0.4rem 0 0 20px !important;\n}\n.mb-16[data-v-3eedcac8]{\n     margin-bottom: 16px;\n}\n", ""]);
 
 // exports
 
@@ -47788,26 +47788,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             servers: [],
             onlineUsers: 0,
-            openConnection: 0
+            openConnection: 0,
+            online_streams: 0,
+            offline_streams: 0,
+            total_output: 0,
+            total_input: 0
         };
     },
     created: function created() {
         this.getServers();
         setInterval(function () {
             this.getServers();
-        }.bind(this), 10000);
+        }.bind(this), 150000);
     },
 
     methods: {
@@ -47816,11 +47814,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.get('/get-servers', {}).then(function (response) {
                 var self = _this;
-                self.servers = response.data;
-                for (var i = 0; i < self.servers.length; i++) {
-                    self.onlineUsers += self.servers[i].online_users;
-                    self.openConnection += self.servers[i].open_connections;
-                }
+                self.servers = response.data.servers;
+                self.onlineUsers = response.data.total_online_users;
+                self.openConnection = response.data.total_open_connection;
+                self.online_streams = response.data.onlineStreams;
+                self.offline_streams = response.data.offlineStreams;
+                self.total_input = response.data.totalInput;
+                self.total_output = response.data.totalOutput;
             });
         },
         calcBar: function calcBar(data) {
@@ -47882,9 +47882,57 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm._m(2),
+      _c("div", { staticClass: "col-lg-3 col-6" }, [
+        _c("div", { staticClass: "card pull-up" }, [
+          _c("div", { staticClass: "card-content" }, [
+            _c("div", { staticClass: "card-body" }, [
+              _c("div", { staticClass: "media d-flex" }, [
+                _c("div", { staticClass: "media-body text-left" }, [
+                  _c("h6", { staticClass: "text-muted mb-16" }, [
+                    _vm._v("Total OutPut (Mbps) "),
+                    _c("span", { staticClass: "float-right" }, [
+                      _vm._v(_vm._s(_vm.total_output))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("h6", { staticClass: "text-muted" }, [
+                    _vm._v("Total Input (Mbps) "),
+                    _c("span", { staticClass: "float-right" }, [
+                      _vm._v(_vm._s(_vm.total_input))
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ])
+      ]),
       _vm._v(" "),
-      _vm._m(3)
+      _c("div", { staticClass: "col-lg-3 col-6" }, [
+        _c("div", { staticClass: "card pull-up" }, [
+          _c("div", { staticClass: "card-content" }, [
+            _c("div", { staticClass: "card-body" }, [
+              _c("div", { staticClass: "media d-flex" }, [
+                _c("div", { staticClass: "media-body text-left" }, [
+                  _c("h6", { staticClass: "text-muted mb-16" }, [
+                    _vm._v("Online Streams "),
+                    _c("span", { staticClass: "float-right" }, [
+                      _vm._v(_vm._s(_vm.online_streams))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("h6", { staticClass: "text-muted" }, [
+                    _vm._v("Offline Streams "),
+                    _c("span", { staticClass: "float-right" }, [
+                      _vm._v(_vm._s(_vm.offline_streams))
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ])
+      ])
     ]),
     _vm._v(" "),
     _c(
@@ -48047,61 +48095,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "align-self-center" }, [
-      _c("i", { staticClass: "icon-call-in danger font-large-2 float-right" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-lg-3 col-3" }, [
-      _c("div", { staticClass: "card pull-up" }, [
-        _c("div", { staticClass: "card-content" }, [
-          _c("div", { staticClass: "card-body" }, [
-            _c("div", { staticClass: "media d-flex" }, [
-              _c("div", { staticClass: "media-body text-left" }, [
-                _c("h6", { staticClass: "text-muted" }, [
-                  _vm._v("Order Value ")
-                ]),
-                _vm._v(" "),
-                _c("h3", [_vm._v("$ 88,568")])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "align-self-center" }, [
-                _c("i", {
-                  staticClass: "icon-trophy success font-large-2 float-right"
-                })
-              ])
-            ])
-          ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-lg-3 col-3" }, [
-      _c("div", { staticClass: "card pull-up" }, [
-        _c("div", { staticClass: "card-content" }, [
-          _c("div", { staticClass: "card-body" }, [
-            _c("div", { staticClass: "media d-flex" }, [
-              _c("div", { staticClass: "media-body text-left" }, [
-                _c("h6", { staticClass: "text-muted" }, [_vm._v("Calls")]),
-                _vm._v(" "),
-                _c("h3", [_vm._v("3,568")])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "align-self-center" }, [
-                _c("i", {
-                  staticClass: "icon-call-in danger font-large-2 float-right"
-                })
-              ])
-            ])
-          ])
-        ])
-      ])
+      _c("i", { staticClass: "icon-globe danger font-large-2 float-right" })
     ])
   }
 ]

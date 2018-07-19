@@ -28,41 +28,35 @@
                                     <h3>{{openConnection}}</h3>
                                 </div>
                                 <div class="align-self-center">
-                                    <i class="icon-call-in danger font-large-2 float-right"></i>
+                                    <i class="icon-globe danger font-large-2 float-right"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-3">
+            <div class="col-lg-3 col-6">
                 <div class="card pull-up">
                     <div class="card-content">
                         <div class="card-body">
                             <div class="media d-flex">
                                 <div class="media-body text-left">
-                                    <h6 class="text-muted">Order Value </h6>
-                                    <h3>$ 88,568</h3>
-                                </div>
-                                <div class="align-self-center">
-                                    <i class="icon-trophy success font-large-2 float-right"></i>
+                                    <h6 class="text-muted mb-16">Total OutPut (Mbps) <span class="float-right">{{total_output}}</span></h6>
+                                    <h6 class="text-muted">Total Input (Mbps) <span class="float-right">{{total_input}}</span></h6>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-3">
+            <div class="col-lg-3 col-6">
                 <div class="card pull-up">
                     <div class="card-content">
                         <div class="card-body">
                             <div class="media d-flex">
                                 <div class="media-body text-left">
-                                    <h6 class="text-muted">Calls</h6>
-                                    <h3>3,568</h3>
-                                </div>
-                                <div class="align-self-center">
-                                    <i class="icon-call-in danger font-large-2 float-right"></i>
+                                    <h6 class="text-muted mb-16">Online Streams <span class="float-right">{{online_streams}}</span></h6>
+                                    <h6 class="text-muted">Offline Streams <span class="float-right">{{offline_streams}}</span></h6>
                                 </div>
                             </div>
                         </div>
@@ -128,25 +122,31 @@
             return {
                servers:[],
                onlineUsers:0,
-               openConnection: 0
+               openConnection: 0,
+               online_streams:0,
+               offline_streams:0,
+               total_output: 0,
+               total_input: 0
             }
         },
         created() {
             this.getServers();
             setInterval(function () {
                 this.getServers();
-            }.bind(this), 10000);
+            }.bind(this), 150000);
         },
         methods: {
             getServers(){
                 axios.get('/get-servers', {
                 }).then((response) => {
                      const self = this;
-                     self.servers = response.data;
-                     for(let i=0;i<self.servers.length;i++) {
-                         self.onlineUsers += self.servers[i].online_users;
-                         self.openConnection += self.servers[i].open_connections;
-                     }
+                     self.servers = response.data.servers;
+                     self.onlineUsers = response.data.total_online_users;
+                     self.openConnection = response.data.total_open_connection;
+                     self.online_streams = response.data.onlineStreams;
+                     self.offline_streams = response.data.offlineStreams;
+                     self.total_input = response.data.totalInput;
+                     self.total_output = response.data.totalOutput;
                 });
             },
             calcBar(data){
@@ -169,5 +169,8 @@
     .progress {
        width: 65px;
        margin: 0.4rem 0 0 20px !important;
+    }
+    .mb-16{
+        margin-bottom: 16px;
     }
 </style>

@@ -8,16 +8,18 @@ use DB;
 class Servers extends Model
 {
     protected $table = 'streaming_servers';
-    protected $user_activity ;
+    protected $user_activity;
+    protected $stream_sys;
     public function __construct(){
         $this->user_activity = new UserActivityNow();
+        $this->stream_sys = new StreamTable();
     }
     public function getAllServers(){
         $servers = Servers::all();
+        $total_output = 0; $total_input = 0;
         foreach ($servers as $server){
             $server->online_users = $this->user_activity->onlineUsers($server->id);
             $server->open_connections = $this->user_activity->openConnection($server->id);
-            $server->online_users = $this->user_activity->onlineUsers($server->id);
             $server->watchdog_data = json_decode($server->watchdog_data);
             $server->server_hardware = json_decode($server->server_hardware);
             $server->ram_used_percent = $server->watchdog_data->total_mem_used_percent;
@@ -29,9 +31,20 @@ class Servers extends Model
             $server->live_streaming = trim(preg_replace('/\s+/', ' ', $server->server_hardware->total_running_streams));
             $total_bytes =  $server->watchdog_data->bytes_sent + $server->watchdog_data->bytes_received;
             $server->network = round($this->calculateNetworkSpeed($network,$total_bytes));
+            $total_input += $server->input;
+            $total_output += $server->output;
 
         }
-        return $servers;
+        return [
+           'servers' => $servers,
+           'total_online_users' => $this->user_activity->onlineUsers(),
+           'total_open_connection' => $this->user_activity->openConnection(),
+           'onlineStreams' => $this->stream_sys->getonlineStreams(),
+           'offlineStreams' => $this->stream_sys->getofflineStreams(),
+           'totalOutput' => round($total_output),
+           'totalInput' => round($total_input)
+
+        ];
     }
     private function calculateNetworkSpeed($network,$total_bytes) {
         if ($network<=0) $network = 1000;
