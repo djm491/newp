@@ -34,10 +34,9 @@ class Servers extends Model
         return $servers;
     }
     private function calculateNetworkSpeed($network,$total_bytes) {
-        $network = trim($network," \r\n");
-        if (!is_int($network)) $network = 1000;
-        if($total_bytes <1) $total_bytes = 1;
-        $network = (($network - ($network - $total_bytes ))/$network)*100;
+        if ($network<=0) $network = 1000;
+        if($total_bytes <0.00001) $total_bytes = 0;
+        $network = (($total_bytes )/($network ))*100;
         return $network;
     }
 }

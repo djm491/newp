@@ -7,11 +7,11 @@
                         <div class="card-body">
                             <div class="media d-flex">
                                 <div class="media-body text-left">
-                                    <h6 class="text-muted">Order Value </h6>
-                                    <h3>$ 88,568</h3>
+                                    <h6 class="text-muted">Online User </h6>
+                                    <h3>{{onlineUsers}}</h3>
                                 </div>
                                 <div class="align-self-center">
-                                    <i class="icon-trophy success font-large-2 float-right"></i>
+                                    <i class="icon-user success font-large-2 float-right"></i>
                                 </div>
                             </div>
                         </div>
@@ -126,7 +126,8 @@
     export default {
         data () {
             return {
-               servers:[]
+               servers:[],
+               onlineUsers:0
             }
         },
         created() {
@@ -141,6 +142,9 @@
                 }).then((response) => {
                      const self = this;
                      self.servers = response.data;
+                     for(let i=0;i<self.servers.length;i++) {
+                         self.onlineUsers += self.servers[i].online_users;
+                     }
                 });
             },
             calcBar(data){

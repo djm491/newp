@@ -47798,7 +47798,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            servers: []
+            servers: [],
+            onlineUsers: 0
         };
     },
     created: function created() {
@@ -47815,6 +47816,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.get('/get-servers', {}).then(function (response) {
                 var self = _this;
                 self.servers = response.data;
+                for (var i = 0; i < self.servers.length; i++) {
+                    self.onlineUsers += self.servers[i].online_users;
+                }
             });
         },
         calcBar: function calcBar(data) {
@@ -47835,7 +47839,33 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { attrs: { id: "root" } }, [
-    _vm._m(0),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-lg-3 col-3" }, [
+        _c("div", { staticClass: "card pull-up" }, [
+          _c("div", { staticClass: "card-content" }, [
+            _c("div", { staticClass: "card-body" }, [
+              _c("div", { staticClass: "media d-flex" }, [
+                _c("div", { staticClass: "media-body text-left" }, [
+                  _c("h6", { staticClass: "text-muted" }, [
+                    _vm._v("Online User ")
+                  ]),
+                  _vm._v(" "),
+                  _c("h3", [_vm._v(_vm._s(_vm.onlineUsers))])
+                ]),
+                _vm._v(" "),
+                _vm._m(0)
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _vm._m(1),
+      _vm._v(" "),
+      _vm._m(2),
+      _vm._v(" "),
+      _vm._m(3)
+    ]),
     _vm._v(" "),
     _c(
       "div",
@@ -47988,93 +48018,83 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-lg-3 col-3" }, [
-        _c("div", { staticClass: "card pull-up" }, [
-          _c("div", { staticClass: "card-content" }, [
-            _c("div", { staticClass: "card-body" }, [
-              _c("div", { staticClass: "media d-flex" }, [
-                _c("div", { staticClass: "media-body text-left" }, [
-                  _c("h6", { staticClass: "text-muted" }, [
-                    _vm._v("Order Value ")
-                  ]),
-                  _vm._v(" "),
-                  _c("h3", [_vm._v("$ 88,568")])
-                ]),
+    return _c("div", { staticClass: "align-self-center" }, [
+      _c("i", { staticClass: "icon-user success font-large-2 float-right" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-lg-3 col-3" }, [
+      _c("div", { staticClass: "card pull-up" }, [
+        _c("div", { staticClass: "card-content" }, [
+          _c("div", { staticClass: "card-body" }, [
+            _c("div", { staticClass: "media d-flex" }, [
+              _c("div", { staticClass: "media-body text-left" }, [
+                _c("h6", { staticClass: "text-muted" }, [_vm._v("Calls")]),
                 _vm._v(" "),
-                _c("div", { staticClass: "align-self-center" }, [
-                  _c("i", {
-                    staticClass: "icon-trophy success font-large-2 float-right"
-                  })
-                ])
+                _c("h3", [_vm._v("3,568")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "align-self-center" }, [
+                _c("i", {
+                  staticClass: "icon-call-in danger font-large-2 float-right"
+                })
               ])
             ])
           ])
         ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-lg-3 col-3" }, [
-        _c("div", { staticClass: "card pull-up" }, [
-          _c("div", { staticClass: "card-content" }, [
-            _c("div", { staticClass: "card-body" }, [
-              _c("div", { staticClass: "media d-flex" }, [
-                _c("div", { staticClass: "media-body text-left" }, [
-                  _c("h6", { staticClass: "text-muted" }, [_vm._v("Calls")]),
-                  _vm._v(" "),
-                  _c("h3", [_vm._v("3,568")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-lg-3 col-3" }, [
+      _c("div", { staticClass: "card pull-up" }, [
+        _c("div", { staticClass: "card-content" }, [
+          _c("div", { staticClass: "card-body" }, [
+            _c("div", { staticClass: "media d-flex" }, [
+              _c("div", { staticClass: "media-body text-left" }, [
+                _c("h6", { staticClass: "text-muted" }, [
+                  _vm._v("Order Value ")
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "align-self-center" }, [
-                  _c("i", {
-                    staticClass: "icon-call-in danger font-large-2 float-right"
-                  })
-                ])
+                _c("h3", [_vm._v("$ 88,568")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "align-self-center" }, [
+                _c("i", {
+                  staticClass: "icon-trophy success font-large-2 float-right"
+                })
               ])
             ])
           ])
         ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-lg-3 col-3" }, [
-        _c("div", { staticClass: "card pull-up" }, [
-          _c("div", { staticClass: "card-content" }, [
-            _c("div", { staticClass: "card-body" }, [
-              _c("div", { staticClass: "media d-flex" }, [
-                _c("div", { staticClass: "media-body text-left" }, [
-                  _c("h6", { staticClass: "text-muted" }, [
-                    _vm._v("Order Value ")
-                  ]),
-                  _vm._v(" "),
-                  _c("h3", [_vm._v("$ 88,568")])
-                ]),
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-lg-3 col-3" }, [
+      _c("div", { staticClass: "card pull-up" }, [
+        _c("div", { staticClass: "card-content" }, [
+          _c("div", { staticClass: "card-body" }, [
+            _c("div", { staticClass: "media d-flex" }, [
+              _c("div", { staticClass: "media-body text-left" }, [
+                _c("h6", { staticClass: "text-muted" }, [_vm._v("Calls")]),
                 _vm._v(" "),
-                _c("div", { staticClass: "align-self-center" }, [
-                  _c("i", {
-                    staticClass: "icon-trophy success font-large-2 float-right"
-                  })
-                ])
-              ])
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-lg-3 col-3" }, [
-        _c("div", { staticClass: "card pull-up" }, [
-          _c("div", { staticClass: "card-content" }, [
-            _c("div", { staticClass: "card-body" }, [
-              _c("div", { staticClass: "media d-flex" }, [
-                _c("div", { staticClass: "media-body text-left" }, [
-                  _c("h6", { staticClass: "text-muted" }, [_vm._v("Calls")]),
-                  _vm._v(" "),
-                  _c("h3", [_vm._v("3,568")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "align-self-center" }, [
-                  _c("i", {
-                    staticClass: "icon-call-in danger font-large-2 float-right"
-                  })
-                ])
+                _c("h3", [_vm._v("3,568")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "align-self-center" }, [
+                _c("i", {
+                  staticClass: "icon-call-in danger font-large-2 float-right"
+                })
               ])
             ])
           ])
