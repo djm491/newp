@@ -63,10 +63,11 @@
                     </div>
                 </div>
             </div>
+
         </div>
         <div class="row">
-            <div class="col-12 col-md-4" v-for="server in servers">
-                <div class="card">
+            <div class="col-12 col-md-4" v-for="(server,index) in servers">
+                <div class="card" :id="'exPopover1-'+index" variant="primary">
                     <div class="card-header">
                         <h4 class="card-title">{{server.server_name}}</h4>
                     </div>
@@ -75,42 +76,49 @@
                             <p class="text-bold-600">Online Users<span class="float-right">{{server.online_users}}</span></p>
                             <p class="text-bold-600">Open Connections<span class="float-right">{{server.open_connections}}</span></p>
                             <p class="text-bold-600">UpTime<span class="float-right">{{server.uptime}}</span></p>
-                            <p class="text-bold-600">RAM
-                                <span class="progress progress-sm  mb-1 box-shadow-2 float-right">
-                                    <span class="progress-bar bg-gradient-x-warning" role="progressbar" :style="{'width': server.ram_used_percent + '%'}"
-                                          aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                                    </span>
-                              </span>
-                                <span class="float-right">{{roundFunction(server.ram_used_percent)}}%</span>
-                            </p>
-                            <p class="text-bold-600">CPU
-                                <span class="progress progress-sm  mb-1 box-shadow-2 float-right">
-                                    <span class="progress-bar bg-gradient-x-success" role="progressbar" :style="{'width': server.cpu_usage + '%'}"
-                                          aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                                    </span>
-                             </span>
-                                <span class="float-right">{{roundFunction(server.cpu_usage)}}%</span>
-                            </p>
-                            <p class="text-bold-600">NETWORK
-                                <span class="progress progress-sm  mb-1 box-shadow-2 float-right">
-                                     <span class="progress-bar bg-gradient-x-danger" role="progressbar" :style="{'width': server.network + '%'}"
-                                           aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                                    </span>
-                             </span>
-                                <span class="float-right">{{roundFunction(server.network)}}%</span>
-                            </p>
+
                             <p class="text-bold-600"> Live
                                 <span class="float-right">{{server.live_streaming}}</span>
-                            </p>
-                            <p class="text-bold-600">Output
-                                <span class="float-right">{{server.output}}</span>
-                            </p>
-                            <p class="text-bold-600">Input
-                                <span class="float-right">{{server.input}}</span>
                             </p>
                         </div>
                     </div>
                 </div>
+                <b-popover :target="'exPopover1-'+index"
+                           :placement="'left'"
+                           triggers="hover focus">
+                    <template>
+                        <p class="text-bold-600">Output
+                            <span class="float-right">{{server.output}}</span>
+                        </p>
+                        <p class="text-bold-600">Input
+                            <span class="float-right">{{server.input}}</span>
+                        </p>
+                        <p class="text-bold-600">RAM
+                            <span class="progress progress-sm  mb-1 box-shadow-2 float-right">
+                                    <span class="progress-bar bg-gradient-x-warning" role="progressbar" :style="{'width': server.ram_used_percent + '%'}"
+                                          aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+                                    </span>
+                              </span>
+                            <span class="float-right">{{roundFunction(server.ram_used_percent)}}%</span>
+                        </p>
+                        <p class="text-bold-600">CPU
+                            <span class="progress progress-sm  mb-1 box-shadow-2 float-right">
+                                    <span class="progress-bar bg-gradient-x-success" role="progressbar" :style="{'width': server.cpu_usage + '%'}"
+                                          aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+                                    </span>
+                             </span>
+                            <span class="float-right">{{roundFunction(server.cpu_usage)}}%</span>
+                        </p>
+                        <p class="text-bold-600">NETWORK
+                            <span class="progress progress-sm  mb-1 box-shadow-2 float-right">
+                                     <span class="progress-bar bg-gradient-x-danger" role="progressbar" :style="{'width': server.network + '%'}"
+                                           aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+                                    </span>
+                             </span>
+                            <span class="float-right">{{roundFunction(server.network)}}%</span>
+                        </p>
+                    </template>
+                </b-popover>
             </div>
         </div>
     </div>
