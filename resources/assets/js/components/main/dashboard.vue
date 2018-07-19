@@ -24,8 +24,8 @@
                         <div class="card-body">
                             <div class="media d-flex">
                                 <div class="media-body text-left">
-                                    <h6 class="text-muted">Calls</h6>
-                                    <h3>3,568</h3>
+                                    <h6 class="text-muted">Open Connection</h6>
+                                    <h3>{{openConnection}}</h3>
                                 </div>
                                 <div class="align-self-center">
                                     <i class="icon-call-in danger font-large-2 float-right"></i>
@@ -127,7 +127,8 @@
         data () {
             return {
                servers:[],
-               onlineUsers:0
+               onlineUsers:0,
+               openConnection: 0
             }
         },
         created() {
@@ -144,6 +145,7 @@
                      self.servers = response.data;
                      for(let i=0;i<self.servers.length;i++) {
                          self.onlineUsers += self.servers[i].online_users;
+                         self.openConnection += self.servers[i].open_connections;
                      }
                 });
             },

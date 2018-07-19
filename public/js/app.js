@@ -47799,7 +47799,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             servers: [],
-            onlineUsers: 0
+            onlineUsers: 0,
+            openConnection: 0
         };
     },
     created: function created() {
@@ -47818,6 +47819,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 self.servers = response.data;
                 for (var i = 0; i < self.servers.length; i++) {
                     self.onlineUsers += self.servers[i].online_users;
+                    self.openConnection += self.servers[i].open_connections;
                 }
             });
         },
@@ -47860,7 +47862,25 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm._m(1),
+      _c("div", { staticClass: "col-lg-3 col-3" }, [
+        _c("div", { staticClass: "card pull-up" }, [
+          _c("div", { staticClass: "card-content" }, [
+            _c("div", { staticClass: "card-body" }, [
+              _c("div", { staticClass: "media d-flex" }, [
+                _c("div", { staticClass: "media-body text-left" }, [
+                  _c("h6", { staticClass: "text-muted" }, [
+                    _vm._v("Open Connection")
+                  ]),
+                  _vm._v(" "),
+                  _c("h3", [_vm._v(_vm._s(_vm.openConnection))])
+                ]),
+                _vm._v(" "),
+                _vm._m(1)
+              ])
+            ])
+          ])
+        ])
+      ]),
       _vm._v(" "),
       _vm._m(2),
       _vm._v(" "),
@@ -48026,26 +48046,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-lg-3 col-3" }, [
-      _c("div", { staticClass: "card pull-up" }, [
-        _c("div", { staticClass: "card-content" }, [
-          _c("div", { staticClass: "card-body" }, [
-            _c("div", { staticClass: "media d-flex" }, [
-              _c("div", { staticClass: "media-body text-left" }, [
-                _c("h6", { staticClass: "text-muted" }, [_vm._v("Calls")]),
-                _vm._v(" "),
-                _c("h3", [_vm._v("3,568")])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "align-self-center" }, [
-                _c("i", {
-                  staticClass: "icon-call-in danger font-large-2 float-right"
-                })
-              ])
-            ])
-          ])
-        ])
-      ])
+    return _c("div", { staticClass: "align-self-center" }, [
+      _c("i", { staticClass: "icon-call-in danger font-large-2 float-right" })
     ])
   },
   function() {
