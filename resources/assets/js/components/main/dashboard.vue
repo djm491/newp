@@ -1,7 +1,7 @@
 <template>
     <div id="root">
         <div class="row">
-            <div class="col-lg-3 col-3">
+            <div class="col-lg-3 col-3" v-if="onlineUsers">
                 <div class="card pull-up">
                     <div class="card-content">
                         <div class="card-body">
@@ -18,7 +18,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-3">
+            <div class="col-lg-3 col-3" v-if="openConnection">
                 <div class="card pull-up">
                     <div class="card-content">
                         <div class="card-body">
@@ -35,7 +35,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-6">
+            <div class="col-lg-3 col-6" v-if="total_input || total_output">
                 <div class="card pull-up">
                     <div class="card-content">
                         <div class="card-body">
@@ -49,7 +49,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-6">
+            <div class="col-lg-3 col-6" v-if="online_streams || offline_streams">
                 <div class="card pull-up">
                     <div class="card-content">
                         <div class="card-body">
@@ -121,11 +121,29 @@
                 </b-popover>
             </div>
         </div>
+        
+        <div class="card" v-show="showChart">
+            <div class="card-header geo-map-header">
+                <h1 class="card-title float-left">
+                 <i class="icon-user mr-1"></i>
+                 Active Clients's Connection Geo</h1>
+            </div>
+            <div class="card-content">
+                <GChart
+                        type="GeoChart"
+                        :data="chartData"
+                />
+            </div>    
+        </div>
     </div>
 </template>
 
 <script>
+    import { GChart } from 'vue-google-charts';
     export default {
+        components: {
+            GChart
+        },
         data () {
             return {
                servers:[],
@@ -134,7 +152,9 @@
                online_streams:0,
                offline_streams:0,
                total_output: 0,
-               total_input: 0
+               total_input: 0,
+               chartData: [{}],
+               showChart: false,
             }
         },
         created() {
@@ -142,6 +162,7 @@
             setInterval(function () {
                 this.getServers();
             }.bind(this), 150000);
+            
         },
         methods: {
             getServers(){
@@ -155,6 +176,8 @@
                      self.offline_streams = response.data.offlineStreams;
                      self.total_input = response.data.totalInput;
                      self.total_output = response.data.totalOutput;
+                     self.chartData = response.data.geo_ip_users;
+                     self.showChart = true;
                 });
             },
             calcBar(data){
@@ -192,5 +215,12 @@
     .table_row{
         font-size: 12px;
         margin-bottom: 0;
+    }
+    .geo-map-header {
+       background-color: #F8664A;
+    }
+    .geo-map-header h1 {
+        font-size: 16px !important;
+        color: #FFFFFF;
     }
 </style>

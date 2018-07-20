@@ -15,7 +15,7 @@ class Servers extends Model
         $this->stream_sys = new StreamTable();
     }
     public function getAllServers(){
-        $servers = Servers::all();
+        $servers = Servers::select('id','watchdog_data','server_hardware')->get();
         $total_output = 0; $total_input = 0;
         foreach ($servers as $server){
             $server->online_users = $this->user_activity->onlineUsers($server->id);
@@ -42,7 +42,8 @@ class Servers extends Model
            'onlineStreams' => $this->stream_sys->getonlineStreams(),
            'offlineStreams' => $this->stream_sys->getofflineStreams(),
            'totalOutput' => round($total_output),
-           'totalInput' => round($total_input)
+           'totalInput' => round($total_input),
+           'geo_ip_users' => $this->user_activity->getGeoIp()
 
         ];
     }

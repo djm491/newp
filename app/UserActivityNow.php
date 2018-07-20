@@ -24,4 +24,16 @@ class UserActivityNow extends Model
          $onlineUsers = $query->groupBy('user_id')->get();
          return $onlineUsers->count();
     }
+    public function getGeoIp() {
+        $total_users =  UserActivityNow::select('user_activity_now.geoip_country_code', DB::raw('count(*) as number_of_users'))
+                                      ->where('geoip_country_code','!=','')
+                                      ->groupBy('geoip_country_code')
+                                      ->get();
+        $result[] = ['Country', 'Popularity'];
+        foreach ($total_users as $key => $value) {
+            $result[++$key] = [$value->geoip_country_code,$value->number_of_users];
+        }
+        return $result;
+
+    }
 }
