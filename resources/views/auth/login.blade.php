@@ -1,115 +1,69 @@
-<!DOCTYPE html>
-<html class="loading" lang="en" data-textdirection="ltr">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <meta name="description" content="Modern admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities with bitcoin dashboard.">
-    <meta name="keywords" content="admin template, modern admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
-    <meta name="author" content="PIXINVENT">
-    <title>Newp Login
-    </title>
-    <link rel="apple-touch-icon" href="/app-assets/images/ico/apple-icon-120.png">
-    <link rel="shortcut icon" type="image/x-icon" href="/app-assets/images/ico/favicon.ico">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700"
-          rel="stylesheet">
-    <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css"
-          rel="stylesheet">
-    <!-- BEGIN VENDOR CSS-->
-    <link rel="stylesheet" type="text/css" href="/app-assets/css/vendors.css">
-    <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/forms/icheck/icheck.css">
-    <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/forms/icheck/custom.css">
-    <!-- END VENDOR CSS-->
-    <!-- BEGIN MODERN CSS-->
-    <link rel="stylesheet" type="text/css" href="/app-assets/css/app.css">
-    <!-- END MODERN CSS-->
-    <!-- BEGIN Page Level CSS-->
-    <link rel="stylesheet" type="text/css" href="/app-assets/css/core/menu/menu-types/vertical-compact-menu.css">
-    <link rel="stylesheet" type="text/css" href="/app-assets/css/core/colors/palette-gradient.css">
-    <link rel="stylesheet" type="text/css" href="/app-assets/css/pages/login-register.css">
-    <!-- END Page Level CSS-->
-    <!-- BEGIN Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
-    <!-- END Custom CSS-->
-</head>
-<body class="vertical-layout vertical-compact-menu 1-column  bg-cyan bg-lighten-2 menu-expanded fixed-navbar"
-      data-open="click" data-menu="vertical-compact-menu" data-col="1-column">
-<!-- fixed-top-->
-<div class="app-content content">
-    <div class="content-wrapper">
-        <div class="content-header row">
-        </div>
-        <div class="content-body">
-            <section class="flexbox-container">
-                <div class="col-12 d-flex align-items-center justify-content-center">
-                    <div class="col-md-4 col-10 box-shadow-2 p-0">
-                        <div class="card border-grey border-lighten-3 m-0">
-                            <div class="card-header border-0">
-                                <div class="card-title text-center">
-                                    <img src="http://admin.indiansat.tk/mp/a.png" width="100" alt="branding logo">
-                                </div>
-                                @if($errors->any())
-                                    <div class="alert alert-danger">{{$errors->first()}}</div>
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Login') }}</div>
+
+                <div class="card-body">
+                    <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
+                        @csrf
+
+                        <div class="form-group row">
+                            <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+
+                                @if ($errors->has('email'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
                                 @endif
-                                <h6 class="card-subtitle line-on-side text-muted text-center font-small-3 pt-2">
-                                    <span>Login with NewP</span>
-                                </h6>
                             </div>
-                            <div class="card-content">
-                                <div class="card-body">
-                                    <form class="form-horizontal" action="/login" novalidate method="POST">
-                                        {{ csrf_field() }}
-                                        <fieldset class="form-group position-relative has-icon-left">
-                                            <input type="text" class="form-control input-lg" id="user-name" placeholder="Your Username"
-                                                   tabindex="1" required data-validation-required-message="Please enter your username." name="username">
-                                            <div class="form-control-position">
-                                                <i class="ft-user"></i>
-                                            </div>
-                                            <div class="help-block font-small-3"></div>
-                                        </fieldset>
-                                        <fieldset class="form-group position-relative has-icon-left">
-                                            <input type="password" class="form-control input-lg" id="password" placeholder="Enter Password"
-                                                   tabindex="2" required data-validation-required-message="Please enter valid passwords." name="password">
-                                            <div class="form-control-position">
-                                                <i class="la la-key"></i>
-                                            </div>
-                                            <div class="help-block font-small-3"></div>
-                                        </fieldset>
-                                        <div class="form-group row">
-                                            <div class="col-md-6 col-12 text-center text-md-left">
-                                                <fieldset>
-                                                    <input type="checkbox" id="remember-me" class="chk-remember">
-                                                    <label for="remember-me"> Remember Me</label>
-                                                </fieldset>
-                                            </div>
-                                            {{--<div class="col-md-6 col-12 text-center text-md-right"><a href="recover-password.html" class="card-link">Forgot Password?</a></div>--}}
-                                        </div>
-                                        <button type="submit" class="btn btn-danger btn-block btn-lg"><i class="ft-unlock"></i> Login</button>
-                                    </form>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+
+                                @if ($errors->has('password'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-6 offset-md-4">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Remember Me') }}
+                                    </label>
                                 </div>
                             </div>
                         </div>
-                    </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-8 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Login') }}
+                                </button>
+
+                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    {{ __('Forgot Your Password?') }}
+                                </a>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-            </section>
+            </div>
         </div>
     </div>
 </div>
-<!-- BEGIN VENDOR JS-->
-<script src="/app-assets/vendors/js/vendors.min.js" type="text/javascript"></script>
-<!-- BEGIN VENDOR JS-->
-<!-- BEGIN PAGE VENDOR JS-->
-<script src="/app-assets/vendors/js/forms/validation/jqBootstrapValidation.js"
-        type="text/javascript"></script>
-<script src="/app-assets/vendors/js/forms/icheck/icheck.min.js" type="text/javascript"></script>
-<!-- END PAGE VENDOR JS-->
-<!-- BEGIN MODERN JS-->
-<script src="/app-assets/js/core/app-menu.js" type="text/javascript"></script>
-<script src="/app-assets/js/core/app.js" type="text/javascript"></script>
-<script src="/app-assets/js/scripts/customizer.js" type="text/javascript"></script>
-<!-- END MODERN JS-->
-<!-- BEGIN PAGE LEVEL JS-->
-<script src="/app-assets/js/scripts/forms/form-login-register.js" type="text/javascript"></script>
-<!-- END PAGE LEVEL JS-->
-</body>
-</html>
+@endsection
