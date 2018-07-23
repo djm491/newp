@@ -3,7 +3,7 @@
 Route::group(['middleware' => 'auth'], function (){
 
 Route::get('/home','ServerController@index')->name('home');
-
+Route::get('/','ServerController@index');
 
 /*
  * API Calls
