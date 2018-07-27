@@ -20,7 +20,7 @@
                     </li>
                     <li><a class="menu-item" href="dashboard-crypto.html" data-i18n="nav.dash.crypto">Manage Lines</a>
                     </li>
-                    <li><a class="menu-item" href="dashboard-sales.html" data-i18n="nav.dash.sales">Mass Edit Lines</a>
+                    <li><a class="menu-item" href="/edit/mass-streams" data-i18n="nav.dash.sales">Mass Edit Lines</a>
                     </li>
                 </ul>
             </li>
@@ -85,7 +85,7 @@
 
             <li class="nav-item"><a href="index.html"><i class="la la-wrench"></i><span class="menu-title" data-i18n="nav.dash.main">Live/VOD Tools</span></a>
                 <ul class="menu-content">
-                    <li><a class="menu-item" href="dashboard-ecommerce.html" data-i18n="nav.dash.ecommerce">Mass Edit Live Streams</a>
+                    <li><a class="menu-item" href="/edit/mass-streams" data-i18n="nav.dash.ecommerce">Mass Edit Live Streams</a>
                     </li>
                     <li><a class="menu-item" href="dashboard-crypto.html" data-i18n="nav.dash.crypto">Mass Edit VOD</a>
                     </li>
