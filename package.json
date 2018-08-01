@@ -26,6 +26,9 @@
         "vue-axios": "^2.1.2",
         "vue-google-charts": "^0.2.2",
         "vue-js-popover": "^1.1.7",
+        "vue-search-select": "^2.6.1",
+        "vue-select": "^2.4.0",
+        "vue-select2": "^0.2.6",
         "vue-virtual-scroll-list": "^1.2.7",
         "vue-virtual-scroller": "^0.12.0"
     }

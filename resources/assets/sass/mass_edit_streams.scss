@@ -1,0 +1,72 @@
+li {
+  list-style: none;
+}
+.inline{
+  display: inline-block;
+}
+.w-500{
+  width: 500px;
+}
+.mass_edit_section {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   select,.radio-group{
+     width: 500px;
+   }
+   div.checklistContainer {
+     padding: 4px;
+     background: #f7f7f7;
+     border: 1px solid #aaa;
+     margin-bottom: 10px;
+     font-family: Helvetica,arial,verdana,sans-serif;
+     font-size: 12px;
+     line-height: 1.6em;
+     width: 500px;
+   }
+   .findInList {
+    margin-bottom: 5px;
+   }
+   .search-input {
+    width: 100%;
+    margin-bottom: 10px;
+    background-color: #ccec91;
+    border-radius: 4px;
+    border: 1px solid #719e37;
+    padding: 4px;
+    height: 30px;
+   }
+   .checklist {
+    border: 1px solid #aaa;
+    color: #555;
+    background: #fff;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
+     li {
+       padding: 3px;
+     }
+     li:nth-child(odd) {
+       background-color: #f7f7f7;
+     }
+     li:nth-child(even) {
+       background-color: #fff;
+     }
+     li input {
+       display: block;
+       float: left;
+       margin-top: 4px;
+     }
+     label {
+       display: block;
+       margin: 0;
+       padding: 0;
+       padding-left: 25px;
+     }
+   }
+   ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+}

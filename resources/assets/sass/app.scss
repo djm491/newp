@@ -1,12 +1,15 @@
 
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700");
 
+// online css
+@import url("https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css");
 // Variables
 @import "variables";
+@import "mass_edit_streams";
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+
 
 .navbar-laravel {
   background-color: #fff;

@@ -11,19 +11,13 @@
       rel="stylesheet">
 <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css"
       rel="stylesheet">
-<!-- BEGIN VENDOR CSS-->
 <link rel="stylesheet" type="text/css" href="/app-assets/css/vendors.css">
-<!-- END VENDOR CSS-->
-<!-- BEGIN MODERN CSS-->
 <link rel="stylesheet" type="text/css" href="/app-assets/css/app.css">
-<!-- END MODERN CSS-->
-<!-- BEGIN Page Level CSS-->
 <link rel="stylesheet" type="text/css" href="/app-assets/css/core/menu/menu-types/vertical-menu-modern.css">
 <link rel="stylesheet" type="text/css" href="/app-assets/css/core/colors/palette-gradient.css">
 <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/charts/jquery-jvectormap-2.0.3.css">
 <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/charts/morris.css">
 <link rel="stylesheet" type="text/css" href="/app-assets/fonts/simple-line-icons/style.css">
 <link rel="stylesheet" type="text/css" href="/app-assets/css/core/colors/palette-gradient.css">
-<!-- END Page Level CSS-->
-<!-- BEGIN Custom CSS-->
 <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+<link rel="stylesheet" type="text/css" href="/css/app.css"/>

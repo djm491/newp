@@ -47,6 +47,9 @@ class Servers extends Model
 
         ];
     }
+    function getServersName() {
+        return Servers::select('id as value','server_name as text')->get();
+    }
     private function calculateNetworkSpeed($network,$total_bytes) {
         if ($network<=0) $network = 1000;
         if($total_bytes <0.00001) $total_bytes = 0;

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Servers;
+use App\StreamCategories;
 use Illuminate\Http\Request;
 use App\Stream;
+use App\Setting;
 
 class StreamController extends Controller
 {
@@ -17,7 +20,13 @@ class StreamController extends Controller
        Api Calls
     */ 
     function getStreams(){
-    	return (new Stream())->getAllStreams();
+
+    	return [
+    	         'streams' => (new Stream())->getAllStreams(),
+                 'stream_categories' => (new StreamCategories())->getAllCategories(),
+                 'probeSize' => (new Setting())->getProbeSize(),
+                 'servers' => (new Servers())->getServersName()
+               ];
     }
 
 }
