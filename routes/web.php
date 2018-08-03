@@ -10,7 +10,6 @@ Route::get('/logout', function(){
 Route::group(['middleware' => 'auth'], function (){
 Route::get('/home','ServerController@index')->name('home');
 Route::get('/edit/mass-streams','StreamController@showMassEditPage');
-Auth::routes();
 /*
  * API Calls
  */
